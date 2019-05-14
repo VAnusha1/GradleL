@@ -5,6 +5,12 @@
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * User Manual available at https://docs.gradle.org/5.3.1/userguide/tutorial_java_projects.html
  */
+buildscript {
+  repositories { jcenter() }
+  dependencies {
+    classpath 'com.netflix.nebula:gradle-lint-plugin:latest.release'
+  }
+}
 
 plugins {
     // Apply the java plugin to add support for Java
@@ -14,6 +20,8 @@ plugins {
     id 'application'
 
     id 'jacoco'
+    
+    id 'nebula.lint' version '9.3.2'
 }
 
 repositories {
@@ -50,3 +58,4 @@ jacocoTestCoverageVerification {
 }
 
 test.finalizedBy jacocoTestReport
+gradleLint.reportFormat = 'xml'
